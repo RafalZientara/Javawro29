@@ -1,5 +1,7 @@
 package pl.com.sda.rafal.zientara.apps.samples.c_operational.observer_demo.simple;
 
+import pl.com.sda.rafal.zientara.apps.singleton.EnumSingleton;
+
 import java.util.List;
 
 public class MainObserver {
@@ -26,6 +28,7 @@ public class MainObserver {
         cart.addObserver(observer2);
         cart.addObserver(costsCounter);
 
+//        EnumSingleton.INSTANCE.data; //nope!!!!!!
 
         cart.addItem("Banan");
         cart.addItem("Chleb");

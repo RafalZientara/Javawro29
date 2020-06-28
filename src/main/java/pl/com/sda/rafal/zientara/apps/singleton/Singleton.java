@@ -9,7 +9,8 @@ public class Singleton {
     private Singleton(){}
 
     public static Singleton getInstance() {//1, 3
-        if (instance == null) {
+        if (instance == null) { //T1 ,T2
+            //T1/T2
             instance = new Singleton();
         }
         return instance;
