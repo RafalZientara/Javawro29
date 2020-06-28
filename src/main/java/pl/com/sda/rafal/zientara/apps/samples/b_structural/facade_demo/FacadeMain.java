@@ -5,7 +5,7 @@ public class FacadeMain {
     public static void main(String[] args) {
         //Uzywamy fasady zeby ukryc przed klientem istnienie wielu skomplikowanych systemow
         Kelner kelner = new Kelner();
-        kelner.przyniesPiwo();
+        kelner.przyniesPiwo("mega duże ekstra");
         kelner.podajMenuVege();
         kelner.podajMenuMiesne();
         kelner.rachunekProsze();

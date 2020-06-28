@@ -6,12 +6,11 @@ import java.util.Scanner;
 
 public class Kelner {
 
-    public void przyniesPiwo(){
-        Scanner reader = new Scanner(System.in); // tworzymy skaner na wpisy uzytkownika
-        System.out.println("\"male\" czy \"duze\"?");
-        String rozmiar = reader.nextLine(); // skanujemy odpowiedz
-        reader.close(); // zamykamy skaner kiedy skonczylismy
-        System.out.println("Prosze, " + rozmiar + " piwo.");
+    public void przyniesPiwo(String beerSize){
+        System.out.println("Patrze pod blat mam piwo");
+        System.out.println("Odkapslowane");
+        System.out.println("Przelane do kufla");
+        System.out.println("Prosze, " + beerSize + " piwo.");
     }
 
     public void podajMenuVege(){
