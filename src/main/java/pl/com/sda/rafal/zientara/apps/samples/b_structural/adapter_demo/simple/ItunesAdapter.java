@@ -4,6 +4,10 @@ public class ItunesAdapter implements SongAdapter {
 
     private ItunesSong song;
 
+    public ItunesAdapter(ItunesSong song) {
+        this.song = song;
+    }
+
     @Override
     public String getSongName() {
         return song.trackName;
