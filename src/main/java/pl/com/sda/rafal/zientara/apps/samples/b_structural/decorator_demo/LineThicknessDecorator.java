@@ -16,10 +16,13 @@ public class LineThicknessDecorator extends ShapeDecorator {
     public void resize() {
         decoratedShape.resize();
     }
+
     @Override
     public String description() {
-        return decoratedShape.description() + " z linią grubą na: " + thickness + ".";
+        return decoratedShape.description() +
+                " z linią grubą na: " + thickness + ".";
     }
+
     // no change in the functionality
     @Override
     public boolean isHide() {

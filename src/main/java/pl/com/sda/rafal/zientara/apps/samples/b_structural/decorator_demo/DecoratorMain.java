@@ -2,7 +2,7 @@ package pl.com.sda.rafal.zientara.apps.samples.b_structural.decorator_demo;
 
 public class DecoratorMain {
     public static void main(String[] args) {
-        System.out.println("Tworzenie zwykłych obiektów Shape...");
+        /*System.out.println("Tworzenie zwykłych obiektów Shape...");
         Shape rectangle = new Rectangle();
         Shape circle = new Circle();
         System.out.println("Rysowanie zwykłych obiektów Shape...");
@@ -33,6 +33,14 @@ public class DecoratorMain {
         System.out.println("Tworzenie udekorowanego żółtego prostokąta w czerwone linie...");
         Shape rectangle1 = new FillColorDecorator(new LineColorDecorator(new Rectangle(), Color.RED), Color.YELLOW);
         rectangle1.draw();
-        System.out.println();
+        System.out.println();*/
+
+
+        Circle circle = new Circle();
+        LineThicknessDecorator decorator = new LineThicknessDecorator(circle, 5);
+        LineColorDecorator dec2 = new LineColorDecorator(decorator, Color.ORANGE);
+        System.out.println(dec2.description());
+
+
     }
 }

@@ -12,7 +12,7 @@ public class FactoryMain {
 
     public static void main(String[] args) {
 
-        Car utility = getCar("utility", "1.2 gas", "sedan", "toyota");
+        Car utility = FactoryMain.getCar("utility", "1.2 gas", "sedan", "toyota");
         Car family = getCar("family", "1.4 TDI", "minivan", "mercedes");
 
         System.out.println(utility.toString());
