@@ -6,7 +6,7 @@ import java.util.*;
 public class Supermarket {
     private int productCount;
     private Map<String, Integer> shopping = new HashMap<>();
-    private List<Thread> customers = new ArrayList<>();
+    private List<Thread> customersList = new ArrayList<>();
 
 
     public Supermarket(int productCount, int customerCount) {
@@ -18,18 +18,18 @@ public class Supermarket {
                     if (!getProduct())
                         return;
             }, customerName);
-            customers.add(customer);
+            customersList.add(customer);
             shopping.put(customerName, 0);
         }
     }
 
     public void startSale() {
-        for (Thread thread : customers) {
+        for (Thread thread : customersList) {
             thread.start();
         }
 
         try {
-            for (Thread thread : customers) {
+            for (Thread thread : customersList) {
                 thread.join();
             }
         } catch (InterruptedException ex) {
