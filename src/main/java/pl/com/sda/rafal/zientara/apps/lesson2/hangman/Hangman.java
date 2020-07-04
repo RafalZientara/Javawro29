@@ -6,6 +6,7 @@ import java.util.Set;
 public class Hangman {
     private String puzzle = "";
     private Set<String> guessList = new HashSet<>();
+    private int hp = 7;
 
     public void setPuzzle(String puzzle) {
         this.puzzle = puzzle;
@@ -28,6 +29,30 @@ public class Hangman {
     }
 
     public void guess(String guess) {
-        guessList.add(guess.toLowerCase());
+        if (hp > 0) {
+            if (guess.length() == 1) {
+                String normalizedGuess = guess.toLowerCase();
+                guessList.add(normalizedGuess);
+                if (!puzzle.toLowerCase().contains(normalizedGuess)) {
+                    hp--;
+                }
+            } else if (guess.equalsIgnoreCase(puzzle)) {
+                for (int i = 0; i < guess.length(); i++) {
+                    String character = guess.substring(i, i + 1);
+//                guessList.add(character);//lub tak
+                    guess(character);
+                }
+            } else {
+                hp--;
+            }
+        }
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public boolean isWin() {
+        return getOutput().equals(puzzle);
     }
 }
