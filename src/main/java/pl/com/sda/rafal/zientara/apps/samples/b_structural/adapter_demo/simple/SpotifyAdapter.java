@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 
 //todo Spotify przekonwertuj na jeden format (zaimplementuj interface)
 public class SpotifyAdapter {
-    
+
     private void hint() {
         Date date = new Date();
         date.setTime(System.currentTimeMillis());

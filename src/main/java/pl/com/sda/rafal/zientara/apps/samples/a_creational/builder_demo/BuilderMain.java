@@ -10,6 +10,8 @@ public class BuilderMain {
                 .setGenius(true)
                 .build(); //shift + F6 = rename
 
+        new Human("male","Zdzichu", "30",true,false);
+
         System.out.println(adas.getSex());
         System.out.println(adas.getName());
         System.out.println(adas.getAge() + " years old");

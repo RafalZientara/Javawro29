@@ -31,6 +31,14 @@ class Human {
         return genius;
     }
 
+    public Human(String sex, String name, String age, boolean programmer, boolean genius) {
+        this.sex = sex;
+        this.name = name;
+        this.age = age;
+        this.programmer = programmer;
+        this.genius = genius;
+    }
+
     private Human(Builder builder) {
         this.sex = builder.sex;
         this.name = builder.name;
