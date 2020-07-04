@@ -4,10 +4,14 @@ import java.util.Random;
 
 public class DownloadThread implements Runnable {
 
+    private static long currentId = 1;
     private final Listener listener;
+    private final long id;
 
     public DownloadThread(Listener listener) {
         this.listener = listener;
+        id = currentId;
+        currentId++;
     }
 
     @Override
@@ -16,7 +20,7 @@ public class DownloadThread implements Runnable {
         for (int i = 0; i <= 10; i++) {
             int progress = i * 10;
 //            System.out.println(name + " " + progress);
-            listener.onProgress(progress, this);
+            listener.onProgress(progress, id);
             pretendToWork();
         }
 //        System.out.println(name + " koniec!");
@@ -32,8 +36,13 @@ public class DownloadThread implements Runnable {
         }
     }
 
+    public long getId() {
+        return id;
+    }
+
     public interface Listener {
-        void onProgress(int progress, DownloadThread thread);
+        void onProgress(int progress, long threadId);
+
         void onSuccess();
     }
 

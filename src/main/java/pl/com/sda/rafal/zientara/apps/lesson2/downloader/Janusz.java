@@ -8,7 +8,7 @@ import java.util.Optional;
 public class Janusz implements DownloadThread.Listener {
     private int processCount;
     private int completedProcesses;//todo AtomicInteger
-    private final Map<DownloadThread, Integer> threadsProgress = new HashMap<>();
+    private final Map<Long, Integer> threadsProgress = new HashMap<>();
 
     public void startWork(int processCount) {
         this.processCount = processCount;
@@ -16,7 +16,7 @@ public class Janusz implements DownloadThread.Listener {
         for (int i = 0; i < processCount; i++) {
             DownloadThread runnable = new DownloadThread(this);
             synchronized (threadsProgress) {
-                threadsProgress.put(runnable, 0);
+                threadsProgress.put(runnable.getId(), 0);
             }
             Thread thread = new Thread(runnable);
             thread.start();
@@ -24,9 +24,9 @@ public class Janusz implements DownloadThread.Listener {
     }
 
     @Override
-    public void onProgress(int progress, DownloadThread thread) {
+    public void onProgress(int progress, long threadId) {
         synchronized (threadsProgress) {
-            threadsProgress.put(thread, progress);
+            threadsProgress.put(threadId, progress);
             //todo avg process
             Collection<Integer> values = threadsProgress.values();
             //todo print
