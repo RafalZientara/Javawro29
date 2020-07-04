@@ -11,6 +11,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Javawro29");
         System.out.println("hrynowieckip");
+        System.out.println("Cos");
 
         Singleton instance = Singleton.getInstance();
 
