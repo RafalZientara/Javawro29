@@ -13,12 +13,15 @@ public class Game {
         Choice choice1 = player1.getAction();
         Choice choice2 = player2.getAction();
 
+        System.out.println("P1: " + choice1);
+        System.out.println("P2: " + choice2);
+
         GameResult result = getResult(choice1, choice2);
         System.out.println("Wynik gry: " + result);
     }
 
     private GameResult getResult(Choice choice1,
-                                        Choice choice2) {
+                                 Choice choice2) {
         if (choice1 == choice2) {
             return GameResult.DRAW;
         }
