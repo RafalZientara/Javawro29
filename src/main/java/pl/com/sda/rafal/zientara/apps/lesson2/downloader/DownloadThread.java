@@ -10,8 +10,7 @@ public class DownloadThread implements Runnable {
 
     public DownloadThread(Listener listener) {
         this.listener = listener;
-        id = currentId;
-        currentId++;
+        id = currentId++;
     }
 
     @Override

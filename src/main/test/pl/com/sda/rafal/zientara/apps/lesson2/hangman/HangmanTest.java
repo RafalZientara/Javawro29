@@ -188,7 +188,6 @@ class HangmanTest {
         game.guess("Ala ma kota");
         //when
 
-
         //then
         assertTrue(game.isWin());
     }
