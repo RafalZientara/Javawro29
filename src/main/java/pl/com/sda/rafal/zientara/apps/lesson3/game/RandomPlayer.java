@@ -2,7 +2,11 @@ package pl.com.sda.rafal.zientara.apps.lesson3.game;
 
 import java.util.Random;
 
-public class RandomPlayer implements Player {
+public class RandomPlayer extends Player {
+    public RandomPlayer(String nick) {
+        super(nick);
+    }
+
     @Override
     public Choice getAction() {
         Random random = new Random();

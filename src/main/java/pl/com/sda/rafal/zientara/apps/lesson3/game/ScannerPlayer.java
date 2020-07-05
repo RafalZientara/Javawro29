@@ -2,7 +2,12 @@ package pl.com.sda.rafal.zientara.apps.lesson3.game;
 
 import java.util.Scanner;
 
-public class ScannerPlayer implements Player {
+public class ScannerPlayer extends Player {
+
+    public ScannerPlayer(String nick) {
+        super(nick);
+    }
+
     @Override
     public Choice getAction() {
         //todo
