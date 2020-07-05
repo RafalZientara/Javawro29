@@ -30,15 +30,18 @@ public class Hangman {
 
     public void guess(String guess) {
         if (hp > 0) {
-            if (guess.length() == 1) {
-                String normalizedGuess = guess.toLowerCase();
+            String normalizedGuess = guess.trim().toLowerCase();
+            if (normalizedGuess.length() == 0) {
+                return;
+            }
+            if (normalizedGuess.length() == 1) {
                 guessList.add(normalizedGuess);
                 if (!puzzle.toLowerCase().contains(normalizedGuess)) {
                     hp--;
                 }
-            } else if (guess.equalsIgnoreCase(puzzle)) {
-                for (int i = 0; i < guess.length(); i++) {
-                    String character = guess.substring(i, i + 1);
+            } else if (normalizedGuess.equalsIgnoreCase(puzzle)) {
+                for (int i = 0; i < normalizedGuess.length(); i++) {
+                    String character = normalizedGuess.substring(i, i + 1);
 //                guessList.add(character);//lub tak
                     guess(character);
                 }

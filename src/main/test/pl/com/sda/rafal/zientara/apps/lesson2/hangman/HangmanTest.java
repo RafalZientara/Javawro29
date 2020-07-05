@@ -106,6 +106,71 @@ class HangmanTest {
     }
 
     @Test
+    public void emptyGuessDoesNothing() {
+        //given
+        Hangman game = new Hangman();
+        game.setPuzzle("a");
+
+        //when
+        game.guess("");
+
+        //then
+        int hp = game.getHp();
+        assertEquals(7, hp);
+    }
+
+    @Test
+    public void spaceGuessDoesNothing() {
+        //given
+        Hangman game = new Hangman();
+        game.setPuzzle("a");
+
+        //when
+        game.guess(" ");
+
+        String txt ="              Ala ma kota               ".trim();//"Ala ma kota"
+
+        //then
+        int hp = game.getHp();
+        assertEquals(7, hp);
+    }
+
+
+
+    @Test
+    public void spacesGuessDoesNothing() {
+        //given
+        Hangman game = new Hangman();
+        game.setPuzzle("a");
+
+        //when
+        game.guess("                ");
+
+        String txt ="              Ala ma kota               ".trim();//"Ala ma kota"
+
+        //then
+        int hp = game.getHp();
+        assertEquals(7, hp);
+    }
+
+    @Test
+    public void guessWithTrimIsCorrect() {
+        //given
+        Hangman game = new Hangman();
+        game.setPuzzle("a");
+
+        //when
+        game.guess("     a          ");
+
+        //then
+        int hp = game.getHp();
+        assertEquals(7, hp);
+        String output = game.getOutput();
+        assertEquals("a",
+                output);
+    }
+
+    @Test
     public void wrongGuessPuzzleHurts() {
         //given
         Hangman game = new Hangman();
