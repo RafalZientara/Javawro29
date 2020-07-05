@@ -128,13 +128,12 @@ class HangmanTest {
         //when
         game.guess(" ");
 
-        String txt ="              Ala ma kota               ".trim();//"Ala ma kota"
+        String txt = "              Ala ma kota               ".trim();//"Ala ma kota"
 
         //then
         int hp = game.getHp();
         assertEquals(7, hp);
     }
-
 
 
     @Test
@@ -146,7 +145,7 @@ class HangmanTest {
         //when
         game.guess("                ");
 
-        String txt ="              Ala ma kota               ".trim();//"Ala ma kota"
+        String txt = "              Ala ma kota               ".trim();//"Ala ma kota"
 
         //then
         int hp = game.getHp();
@@ -255,6 +254,34 @@ class HangmanTest {
 
         //then
         assertTrue(game.isWin());
+    }
+
+    @Test
+    public void tiresShouldBeClearedAfterNewPuzzle() {
+        //given
+        Hangman game = new Hangman();
+        game.setPuzzle("ABBA");
+        game.guess("a");
+
+        //when
+        game.setPuzzle("AC DC");
+
+        //then
+        assertTrue(game.getTries().isEmpty());
+    }
+
+    @Test
+    public void hpShouldBeClearedAfterNewPuzzle() {
+        //given
+        Hangman game = new Hangman();
+        game.setPuzzle("ABBA");
+        game.guess("x");
+
+        //when
+        game.setPuzzle("AC DC");
+
+        //then
+        assertEquals(7, game.getHp());
     }
 
 }

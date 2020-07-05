@@ -2,14 +2,18 @@ package pl.com.sda.rafal.zientara.apps.lesson2.hangman;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Hangman {
+    public static final int MAX_HP = 7;
     private String puzzle = "";
     private Set<String> guessList = new HashSet<>();
-    private int hp = 7;
+    private int hp = MAX_HP;
 
     public void setPuzzle(String puzzle) {
         this.puzzle = puzzle;
+        guessList.clear();
+        hp = MAX_HP;
     }
 
     public String getOutput() {
@@ -51,11 +55,24 @@ public class Hangman {
         }
     }
 
+    public Set<String> getTries(){
+        Set<String> output = new TreeSet<>(guessList);
+        return output;
+    }
+
     public int getHp() {
         return hp;
     }
 
     public boolean isWin() {
         return getOutput().equals(puzzle);
+    }
+
+    public boolean isLose() {
+        return hp == 0;
+    }
+
+    public boolean isGameOver() {
+        return isWin() || isLose();
     }
 }
