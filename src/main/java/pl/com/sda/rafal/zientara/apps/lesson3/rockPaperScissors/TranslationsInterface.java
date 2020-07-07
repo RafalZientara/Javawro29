@@ -8,4 +8,8 @@ public interface TranslationsInterface {
     String getPlayerWinText(String nick);
 
     String getDrawText();
+
+    String getActionMessageForScannerPlayer();
+
+    String getWrongMessageForScannerPlayer();
 }

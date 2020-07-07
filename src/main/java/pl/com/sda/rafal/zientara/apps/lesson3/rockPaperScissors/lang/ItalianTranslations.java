@@ -19,6 +19,16 @@ public class ItalianTranslations implements TranslationsInterface {
         return "Pareggio!";
     }
 
+    @Override
+    public String getActionMessageForScannerPlayer() {
+        return "Scrivo r, p oppure s";
+    }
+
+    @Override
+    public String getWrongMessageForScannerPlayer() {
+        return "Male!";
+    }
+
     private String getActionText(Choice choice){
         switch (choice){
             case ROCK:

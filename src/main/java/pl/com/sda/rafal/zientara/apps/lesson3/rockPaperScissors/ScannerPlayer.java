@@ -3,8 +3,10 @@ package pl.com.sda.rafal.zientara.apps.lesson3.rockPaperScissors;
 import java.util.Scanner;
 
 public class ScannerPlayer extends Player {
-    public ScannerPlayer(String nick) {
+    private TranslationsInterface translations;
+    public ScannerPlayer(String nick, TranslationsInterface translations) {
         super(nick);
+        this.translations = translations;
     }
 
     @Override
@@ -12,7 +14,7 @@ public class ScannerPlayer extends Player {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Wpisz r, p lub s");
+            System.out.println(translations.getActionMessageForScannerPlayer());
             String choice = scanner.next();
             if (choice != null) {
                 switch (choice) {
@@ -23,7 +25,7 @@ public class ScannerPlayer extends Player {
                     case "p":
                         return Choice.PAPER;
                     default:
-                        System.out.println("Źle!");
+                        System.out.println(translations.getWrongMessageForScannerPlayer());
                 }
             }
         }

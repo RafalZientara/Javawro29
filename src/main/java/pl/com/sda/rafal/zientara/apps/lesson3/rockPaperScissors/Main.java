@@ -4,9 +4,9 @@ import pl.com.sda.rafal.zientara.apps.lesson3.rockPaperScissors.lang.ItalianTran
 
 public class Main {
     public static void main(String[] args) {
-        Player player1 = new RandomPlayer("Paolo");
-        Player player2 = new RandomPlayer("Gennaro");
         TranslationsInterface italianTranslations = new ItalianTranslations();
+        Player player1 = new ScannerPlayer("Paolo", italianTranslations);
+        Player player2 = new RandomPlayer("Gennaro");
 
         Game game = new Game(player1, player2, italianTranslations);
         game.play();
