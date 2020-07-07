@@ -2,7 +2,11 @@ package pl.com.sda.rafal.zientara.apps.lesson3.rockPaperScissors;
 
 import java.util.Scanner;
 
-public class ScannerPlayer implements PlayerInterface {
+public class ScannerPlayer extends Player {
+    public ScannerPlayer(String nick) {
+        super(nick);
+    }
+
     @Override
     public Choice getAction() {
         Scanner scanner = new Scanner(System.in);

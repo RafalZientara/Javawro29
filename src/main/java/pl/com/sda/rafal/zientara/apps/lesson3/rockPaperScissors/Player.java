@@ -10,4 +10,6 @@ public abstract class Player  {
     public String getNick(){
         return nick;
     }
+
+    abstract Choice getAction();
 }

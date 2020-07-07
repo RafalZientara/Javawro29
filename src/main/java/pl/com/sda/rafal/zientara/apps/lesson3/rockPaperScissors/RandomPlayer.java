@@ -2,7 +2,11 @@ package pl.com.sda.rafal.zientara.apps.lesson3.rockPaperScissors;
 
 import java.util.Random;
 
-public class RandomPlayer implements PlayerInterface {
+public class RandomPlayer extends Player {
+    public RandomPlayer(String nick) {
+        super(nick);
+    }
+
     @Override
     public Choice getAction() {
         Random random = new Random();
