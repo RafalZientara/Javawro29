@@ -151,4 +151,49 @@ class HangmanTest {
         assertTrue(game.isWin());
     }
 
+    @Test
+    public void emptyGuessDoesNothing(){
+        Hangman game = new Hangman();
+        game.setPuzzle("a");
+
+        game.guess("");
+
+        int hp = game.getHp();
+        assertEquals(7, hp);
+    }
+
+    @Test
+    public void spaceGuessDoesNothing(){
+        Hangman game = new Hangman();
+        game.setPuzzle("a");
+
+        game.guess(" ");
+
+        String text = "    Ala ma kota       ".trim();
+
+        int hp = game.getHp();
+        assertEquals(7, hp);
+    }
+
+    @Test
+    public void triesShouldBeClearedAfterReset(){
+        Hangman game = new Hangman();
+        game.setPuzzle("ABBA");
+        game.guess("a");
+
+        game.setPuzzle("AC DC");
+
+        assertTrue(game.getTries().isEmpty());
+    }
+
+    @Test
+    public void hpShouldBeClearedAfterReset(){
+        Hangman game = new Hangman();
+        game.setPuzzle("ABBA");
+        game.guess("x");
+
+        game.setPuzzle("AC DC");
+
+        assertEquals(7, game.getHp());
+    }
 }

@@ -1,15 +1,21 @@
 package pl.com.sda.rafal.zientara.apps.lesson2.hangman;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Hangman {
-    private String puzzle;
+
+    public static final int MAX_HP = 7;
+    private String puzzle = "";
     private Set<String> guessList = new HashSet<>();
-    private int hp = 7;
+    private int hp = MAX_HP;
 
     public void setPuzzle(String puzzle) {
         this.puzzle = puzzle;
+        this.guessList.clear();
+        this.hp = MAX_HP;
     }
 
     public String getOutput() {
@@ -30,15 +36,19 @@ public class Hangman {
 
     public void guess(String guess) {
         if (hp > 0) {
-            if (guess.length() == 1) {
-                String normalizedGuess = guess.toLowerCase();
+            String normalizedGuess = guess.trim().toLowerCase();
+            if (normalizedGuess.length() == 0){
+                return;
+            }
+
+            if (normalizedGuess.length() == 1) {
                 this.guessList.add(normalizedGuess);
-                if (!puzzle.toLowerCase().contains(guess)) {
+                if (!puzzle.toLowerCase().contains(normalizedGuess)) {
                     hp--;
                 }
-            } else if (guess.equalsIgnoreCase(puzzle)) {
-                for (int i = 0; i < guess.length(); i++) {
-                    String character = guess.substring(i, i + 1);
+            } else if (normalizedGuess.equalsIgnoreCase(puzzle)) {
+                for (int i = 0; i < normalizedGuess.length(); i++) {
+                    String character = normalizedGuess.substring(i, i + 1);
                     guessList.add(character);
                 }
             } else {
@@ -53,5 +63,18 @@ public class Hangman {
 
     public boolean isWin() {
         return getOutput().equals(puzzle);
+    }
+
+    public Set<String> getTries() {
+        Set<String> output = new TreeSet<>(guessList);
+        return output;
+    }
+
+    public boolean isLose() {
+        return hp == 0;
+    }
+
+    public boolean isGameOver(){
+        return isWin() || isLose();
     }
 }
