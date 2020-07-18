@@ -1,5 +1,6 @@
 package pl.com.sda.rafal.zientara.apps.lesson2.hangman;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -7,10 +8,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class HangmanTest {
 
+    private Hangman game;
+
+    @BeforeEach
+    public void setup() {
+        game = new Hangman();
+    }
+
     @Test
     public void secretPassword() {
         //given
-        Hangman game = new Hangman();
 
         //when
         game.setPuzzle("Ala ma kota");
@@ -24,7 +31,6 @@ class HangmanTest {
     @Test
     public void userGuessLetterO() {
         //given
-        Hangman game = new Hangman();
         game.setPuzzle("Ala ma kota");
 
         //when
@@ -40,7 +46,6 @@ class HangmanTest {
     @Test
     public void userGuessLetterBigO() {
         //given
-        Hangman game = new Hangman();
         game.setPuzzle("Ala ma kota");
 
         //when
@@ -56,7 +61,6 @@ class HangmanTest {
     @Test
     public void userGuessLetterA() {
         //given
-        Hangman game = new Hangman();
         game.setPuzzle("Ala ma kota");
 
         //when
@@ -71,7 +75,6 @@ class HangmanTest {
     @Test
     public void userGuessWholePuzzle() {
         //given
-        Hangman game = new Hangman();
         game.setPuzzle("Ala ma kota");
 
         //when
@@ -85,7 +88,6 @@ class HangmanTest {
 
     @Test
     public void userHasSevenHpOnStart() {
-        Hangman game = new Hangman();
         int hp = game.getHp();
         assertEquals(7, hp);
     }
@@ -94,7 +96,6 @@ class HangmanTest {
     @Test
     public void wrongGuessLetterHurts() {
         //given
-        Hangman game = new Hangman();
         game.setPuzzle("a");
 
         //when
@@ -108,7 +109,6 @@ class HangmanTest {
     @Test
     public void emptyGuessDoesNothing() {
         //given
-        Hangman game = new Hangman();
         game.setPuzzle("a");
 
         //when
@@ -122,7 +122,6 @@ class HangmanTest {
     @Test
     public void spaceGuessDoesNothing() {
         //given
-        Hangman game = new Hangman();
         game.setPuzzle("a");
 
         //when
@@ -139,7 +138,6 @@ class HangmanTest {
     @Test
     public void spacesGuessDoesNothing() {
         //given
-        Hangman game = new Hangman();
         game.setPuzzle("a");
 
         //when
@@ -155,7 +153,6 @@ class HangmanTest {
     @Test
     public void guessWithTrimIsCorrect() {
         //given
-        Hangman game = new Hangman();
         game.setPuzzle("a");
 
         //when
@@ -172,7 +169,6 @@ class HangmanTest {
     @Test
     public void wrongGuessPuzzleHurts() {
         //given
-        Hangman game = new Hangman();
         game.setPuzzle("Ala");
 
         //when
@@ -186,7 +182,6 @@ class HangmanTest {
     @Test
     public void outOfHp() {
         //given
-        Hangman game = new Hangman();
         game.setPuzzle("a");
 
         //when
@@ -206,7 +201,6 @@ class HangmanTest {
     @Test
     public void outOfHpAfterGameOver() {
         //given
-        Hangman game = new Hangman();
         game.setPuzzle("a");
 
         //when
@@ -227,7 +221,6 @@ class HangmanTest {
     @Test
     public void guessLetterByLetter() {
         //given
-        Hangman game = new Hangman();
         game.setPuzzle("Ala ma kota");
 
         //when
@@ -247,7 +240,6 @@ class HangmanTest {
     @Test
     public void isWin() {
         //given
-        Hangman game = new Hangman();
         game.setPuzzle("Ala ma kota");
         game.guess("Ala ma kota");
         //when
@@ -259,7 +251,6 @@ class HangmanTest {
     @Test
     public void tiresShouldBeClearedAfterNewPuzzle() {
         //given
-        Hangman game = new Hangman();
         game.setPuzzle("ABBA");
         game.guess("a");
 
@@ -273,7 +264,6 @@ class HangmanTest {
     @Test
     public void hpShouldBeClearedAfterNewPuzzle() {
         //given
-        Hangman game = new Hangman();
         game.setPuzzle("ABBA");
         game.guess("x");
 

@@ -9,7 +9,7 @@ public class Singleton {
         // Ten fragment istnieje tylko po to, by Singleton nie inicjalizował się od razu
     }
 
-    public static Singleton getInstance() { //dopiero wywołanie tej metody inicjalizuje singletona
+    public synchronized static Singleton getInstance() { //dopiero wywołanie tej metody inicjalizuje singletona
         if (instance == null) {
             instance = new Singleton(); // to jest miejsce faktycznej inicjalizacji w metodzie
         }

@@ -16,12 +16,15 @@ public class ScannerPlayer extends Player {
             System.out.println("Wpisz r/p/s");
             String value = scanner.next();
             if (value != null) {
-                switch (value) {
+                switch (value.toLowerCase()) {
                     case "r":
+                    case "rock":
                         return Choice.ROCK;
                     case "s":
+                    case "scissors":
                         return Choice.SCISSORS;
                     case "p":
+                    case "paper":
                         return Choice.PAPER;
                     default:
                         System.out.println("Źle!");
