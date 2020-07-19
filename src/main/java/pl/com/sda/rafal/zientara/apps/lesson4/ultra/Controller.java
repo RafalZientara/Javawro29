@@ -15,12 +15,11 @@ import pl.com.sda.rafal.zientara.apps.lesson4.ultra.shape.*;
 
 import javax.imageio.ImageIO;
 import java.awt.image.RenderedImage;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static pl.com.sda.rafal.zientara.apps.lesson4.ultra.PaintJavaFx.primaryStage;
 
@@ -84,6 +83,7 @@ public class Controller {
                 System.out.printf("Released: %.2f x %.2f\n", x, y);
                 currentShape = createShape();
                 shapeList.add(currentShape);
+                currentShape = null;
                 refreshCanvas();
             }
         });
@@ -201,15 +201,20 @@ public class Controller {
     }
 
     private void saveList(String data) {
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter =
-                new FileChooser.ExtensionFilter("YOLO image (*.yolo)", "*.yolo");
-        fileChooser.getExtensionFilters().add(extFilter);
+        FileChooser fileChooser = getFileChooser();
 
         File file = fileChooser.showSaveDialog(PaintJavaFx.primaryStage);
         if (file != null) {
             saveTextToFile(data, file);
         }
+    }
+
+    private FileChooser getFileChooser() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter =
+                new FileChooser.ExtensionFilter("YOLO image (*.yolo)", "*.yolo");
+        fileChooser.getExtensionFilters().add(extFilter);
+        return fileChooser;
     }
 
     private void saveTextToFile(String content, File file) {
@@ -226,17 +231,45 @@ public class Controller {
 
     @FXML
     public void handleLoad() {
-        //todo
+        FileChooser fileChooser = getFileChooser();
+
+        File file = fileChooser.showOpenDialog(PaintJavaFx.primaryStage);
+        if (file != null) {
+            readData(file);
+        }
+    }
+
+    private void readData(File file) {
+        try {
+            FileReader reader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            List<Shape> newData = bufferedReader.lines()
+                    .filter(s -> s != null)
+                    .map(text -> ShapeFactory.make(text))
+                    .filter(s -> s != null)
+                    .collect(Collectors.toList());
+
+            shapeList.clear();
+            shapeList.addAll(newData);
+            refreshCanvas();
+        } catch (Exception e) {
+            e.printStackTrace();
+            //todo alert
+        }
     }
 
     @FXML
     public void handleClear() {
-        //todo
+        shapeList.clear();
+        refreshCanvas();
     }
 
     @FXML
     public void handleUndo() {
-        //todo
+        if (!shapeList.isEmpty()) {
+            shapeList.remove(shapeList.size() - 1);
+        }
+        refreshCanvas();
     }
 
 }

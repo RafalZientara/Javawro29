@@ -43,4 +43,8 @@ public abstract class Shape {
     public double getLineThickness() {
         return lineThickness;
     }
+
+    public void setLineThickness(double lineThickness) {
+        this.lineThickness = lineThickness;
+    }
 }
