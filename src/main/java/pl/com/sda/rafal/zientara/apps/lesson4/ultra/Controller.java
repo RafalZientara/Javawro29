@@ -48,7 +48,7 @@ public class Controller {
 
                 System.out.printf("Dragged: %.2f x %.2f\n", x, y);
                 currentShape = createShape();
-                shapeList.add(currentShape);
+//                shapeList.add(currentShape);
                 refreshCanvas();
             }
         });
@@ -82,6 +82,9 @@ public class Controller {
                 return new Triangle(Color.MEDIUMAQUAMARINE, startX, startY, endX, endY);
             case OVAL:
                 return new Oval(Color.BLUE, startX, startY, endX, endY);
+            case SQUARE:
+                return new Square(Color.INDIANRED, startX, startY, endX, endY);
+
         }
     }
 
@@ -101,8 +104,6 @@ public class Controller {
         if (currentShape != null) {
             currentShape.draw(context);
         }
-
-
     }
 
     @FXML
@@ -123,6 +124,16 @@ public class Controller {
     @FXML
     public void handleLineButton() {
         currentTool = Tool.LINE;
+    }
+
+    @FXML
+    public void handleSquareButton() {
+        currentTool = Tool.SQUARE;
+    }
+
+    @FXML
+    public void handleStarButton() {
+        currentTool = Tool.STAR;
     }
 
 }

@@ -21,6 +21,8 @@
             <Button mnemonicParsing="false" onAction="#handleTriangleButton" text="Triangle" />
             <Button mnemonicParsing="false" onAction="#handleOvalButton" text="Oval" />
             <Button mnemonicParsing="false" onAction="#handleLineButton" text="Line" />
+            <Button mnemonicParsing="false" onAction="#handleSquareButton" text="Square" />
+            <Button mnemonicParsing="false" onAction="#handleStarButton" text="Star" />
           </children>
         </VBox>
       </left>
