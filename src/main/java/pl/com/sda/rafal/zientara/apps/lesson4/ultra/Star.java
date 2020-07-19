@@ -38,13 +38,11 @@ public class Star extends Shape {
     }
 
     @Override
-    public void draw(GraphicsContext context) {
-        context.setStroke(getColor());
-        context.setLineWidth(getLineThickness());
-
+    public void drawShape(GraphicsContext context) {
         double fullTurn = 2 * Math.PI;
         int count = 10;
         double interval = fullTurn / count;
+        double startTheta = Math.PI / 2;
 
         context.moveTo(x, y);//todo
         context.beginPath();
@@ -55,12 +53,13 @@ public class Star extends Shape {
                 radian /= 2;
             }
             double angle = i * interval;
-            double diffX = Math.cos(angle) * radian;
-            double diffY = -Math.sin(angle) * radian;
+            double diffX = Math.cos(angle + startTheta) * radian;
+            double diffY = -Math.sin(angle + startTheta) * radian;
 
             context.lineTo(x + diffX, y + diffY);
         }
         context.closePath();
+        context.fill();
         context.stroke();
     }
 }

@@ -3,19 +3,39 @@ package pl.com.sda.rafal.zientara.apps.lesson4.ultra;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+//Template pattern
 public abstract class Shape {
-    private Color color;
+    private Color strokeColor;
+    private Color fillColor = Color.RED;
     private double lineThickness;
 
-    public Shape(Color color) {
-        this.color = color;
+    public Shape(Color strokeColor) {
+        this.strokeColor = strokeColor;
         lineThickness = 5;
     }
 
-    public abstract void draw(GraphicsContext context);
+    public void draw(GraphicsContext context) {
+        context.setStroke(getStrokeColor());
+        context.setLineWidth(getLineThickness());
+        context.setFill(getFillColor());
+        drawShape(context);
+    }
+    public abstract void drawShape(GraphicsContext context);
 
-    public Color getColor() {
-        return color;
+    public Color getStrokeColor() {
+        return strokeColor;
+    }
+
+    public void setStrokeColor(Color strokeColor) {
+        this.strokeColor = strokeColor;
+    }
+
+    public Color getFillColor() {
+        return fillColor;
+    }
+
+    public void setFillColor(Color fillColor) {
+        this.fillColor = fillColor;
     }
 
     public double getLineThickness() {

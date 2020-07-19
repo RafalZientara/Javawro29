@@ -28,16 +28,14 @@ public class Triangle extends Shape {
     }
 
     @Override
-    public void draw(GraphicsContext context) {
-        context.setStroke(getColor());
-        context.setLineWidth(getLineThickness());
-
+    public void drawShape(GraphicsContext context) {
         context.moveTo(x,y+height);//1 a
         context.beginPath();//1
         context.lineTo(x + width/2, y);//2 b
         context.lineTo(x + width, y + height);//3 c
         context.lineTo(x,y+height);
         context.closePath();
+        context.fill();
         context.stroke();
     }
 }

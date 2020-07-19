@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
@@ -14,6 +15,10 @@ public class Controller {
 
     @FXML
     private Canvas canvas;
+    @FXML
+    private ColorPicker fillColorPicker;
+    @FXML
+    private ColorPicker strokeColorPicker;
 
     private double startX;
     private double startY;
@@ -25,6 +30,8 @@ public class Controller {
 
     public void initialize() {
         System.out.println("Hello : D");
+        fillColorPicker.setValue(Color.DARKSALMON);
+        strokeColorPicker.setValue(Color.BLACK);
         canvas.setOnMousePressed(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 double x = event.getX();
@@ -72,6 +79,13 @@ public class Controller {
     }
 
     private Shape createShape() {
+        Shape shape = getBaseShape();
+        shape.setStrokeColor(strokeColorPicker.getValue());
+        shape.setFillColor(fillColorPicker.getValue());
+        return shape;
+    }
+
+    private Shape getBaseShape() {
         switch (currentTool) {
             default:
             case LINE:
@@ -86,7 +100,6 @@ public class Controller {
                 return new Square(Color.INDIANRED, startX, startY, endX, endY);
             case STAR:
                 return new Star(Color.YELLOW, startX, startY, endX, endY);
-
         }
     }
 

@@ -28,9 +28,8 @@ public class Oval extends Shape {
     }
 
     @Override
-    public void draw(GraphicsContext context) {
-        context.setStroke(getColor());
-        context.setLineWidth(getLineThickness());
+    public void drawShape(GraphicsContext context) {
+        context.fillOval(x, y, width, height);
         context.strokeOval(x, y, width, height);
     }
 }

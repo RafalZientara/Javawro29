@@ -28,9 +28,8 @@ public class Rectangle extends Shape {
     }
 
     @Override
-    public void draw(GraphicsContext context) {
-        context.setStroke(getColor());
-        context.setLineWidth(getLineThickness());
+    public void drawShape(GraphicsContext context) {
+        context.fillRect(x, y, width, height);
         context.strokeRect(x, y, width, height);
     }
 }

@@ -37,9 +37,8 @@ public class Square extends Shape {
     }
 
     @Override
-    public void draw(GraphicsContext context) {
-        context.setStroke(getColor());
-        context.setLineWidth(getLineThickness());
+    public void drawShape(GraphicsContext context) {
+        context.fillRect(x, y, side, side);
         context.strokeRect(x, y, side, side);
     }
 }
