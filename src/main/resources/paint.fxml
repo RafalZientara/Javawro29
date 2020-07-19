@@ -36,6 +36,17 @@
           </children>
         </VBox>
       </left>
+      <top>
+        <HBox prefHeight="100.0" prefWidth="200.0">
+          <children>
+            <Button mnemonicParsing="false" onAction="#handleExportToImage" text="Export to image" />
+            <Button mnemonicParsing="false" onAction="#handleSave" text="SAVE" />
+            <Button mnemonicParsing="false" onAction="#handleLoad" text="LOAD" />
+            <Button mnemonicParsing="false" onAction="#handleClear" text="Clear" />
+            <Button mnemonicParsing="false" onAction="#handleUndo" text="Undo" />
+          </children>
+        </HBox>
+      </top>
     </BorderPane>
   </children>
 </AnchorPane>

@@ -151,4 +151,25 @@ public class Controller {
         currentTool = Tool.STAR;
     }
 
+    @FXML
+    public void handleExportToImage() {
+        //todo
+    }
+    @FXML
+    public void handleSave() {
+        //todo
+    }
+    @FXML
+    public void handleLoad() {
+        //todo
+    }
+    @FXML
+    public void handleClear() {
+        //todo
+    }
+    @FXML
+    public void handleUndo() {
+        //todo
+    }
+
 }
