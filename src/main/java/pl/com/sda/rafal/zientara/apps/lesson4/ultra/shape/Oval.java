@@ -1,7 +1,8 @@
-package pl.com.sda.rafal.zientara.apps.lesson4.ultra;
+package pl.com.sda.rafal.zientara.apps.lesson4.ultra.shape;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import pl.com.sda.rafal.zientara.apps.lesson4.ultra.Converter;
 
 public class Oval extends Shape {
     private final double x;
@@ -31,5 +32,18 @@ public class Oval extends Shape {
     public void drawShape(GraphicsContext context) {
         context.fillOval(x, y, width, height);
         context.strokeOval(x, y, width, height);
+    }
+
+    @Override
+    public String convertToText() {
+        return new Converter(this)
+                .add(x)
+                .add(y)
+                .add(width)
+                .add(height)
+                .add(getStrokeColor())
+                .add(getFillColor())
+                .add(getLineThickness())
+                .create();
     }
 }

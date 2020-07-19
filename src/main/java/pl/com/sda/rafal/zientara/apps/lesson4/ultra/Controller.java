@@ -1,15 +1,28 @@
 package pl.com.sda.rafal.zientara.apps.lesson4.ultra;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import pl.com.sda.rafal.zientara.apps.lesson4.ultra.shape.*;
 
+import javax.imageio.ImageIO;
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import static pl.com.sda.rafal.zientara.apps.lesson4.ultra.PaintJavaFx.primaryStage;
 
 public class Controller {
 
@@ -153,20 +166,74 @@ public class Controller {
 
     @FXML
     public void handleExportToImage() {
-        //todo
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters()
+                .add(new FileChooser.ExtensionFilter("png files (*.png)", "*.png"));
+
+        File file = fileChooser.showSaveDialog(primaryStage);
+        if (file != null) {
+            try {
+                WritableImage writableImage = new WritableImage((int) canvas.getWidth(),
+                        (int) canvas.getHeight());
+                canvas.snapshot(null, writableImage);
+                RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
+                ImageIO.write(renderedImage, "png", file);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
+
     @FXML
     public void handleSave() {
-        //todo
+        Optional<String> output = shapeList.stream()
+                .map(Shape::convertToText)
+                .reduce((acc, obj) -> acc + "\n" + obj);
+        if (output.isPresent()) {
+            System.out.println(output.get());
+            saveList(output.get());
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Nope!");
+            alert.setContentText("No data to save");
+            alert.showAndWait();
+        }
     }
+
+    private void saveList(String data) {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter =
+                new FileChooser.ExtensionFilter("YOLO image (*.yolo)", "*.yolo");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        File file = fileChooser.showSaveDialog(PaintJavaFx.primaryStage);
+        if (file != null) {
+            saveTextToFile(data, file);
+        }
+    }
+
+    private void saveTextToFile(String content, File file) {
+        try {
+            PrintWriter writer;
+            writer = new PrintWriter(file);
+            writer.println(content);
+            writer.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            //todo error alert dialog
+        }
+    }
+
     @FXML
     public void handleLoad() {
         //todo
     }
+
     @FXML
     public void handleClear() {
         //todo
     }
+
     @FXML
     public void handleUndo() {
         //todo

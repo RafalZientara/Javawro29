@@ -1,4 +1,4 @@
-package pl.com.sda.rafal.zientara.apps.lesson4.ultra;
+package pl.com.sda.rafal.zientara.apps.lesson4.ultra.shape;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -21,6 +21,8 @@ public abstract class Shape {
         drawShape(context);
     }
     public abstract void drawShape(GraphicsContext context);
+
+    public abstract String convertToText();
 
     public Color getStrokeColor() {
         return strokeColor;

@@ -1,7 +1,8 @@
-package pl.com.sda.rafal.zientara.apps.lesson4.ultra;
+package pl.com.sda.rafal.zientara.apps.lesson4.ultra.shape;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import pl.com.sda.rafal.zientara.apps.lesson4.ultra.Converter;
 
 public class Line extends Shape {
     private final double startX;
@@ -23,5 +24,17 @@ public class Line extends Shape {
     public void drawShape(GraphicsContext context) {
         //draw() w Shape samo ustawia kolory i linie
         context.strokeLine(startX, startY, endX, endY);
+    }
+
+    @Override
+    public String convertToText() {
+        return new Converter(this)
+                .add(startX)
+                .add(startY)
+                .add(endX)
+                .add(endY)
+                .add(getStrokeColor())
+                .add(getLineThickness())
+                .create();
     }
 }

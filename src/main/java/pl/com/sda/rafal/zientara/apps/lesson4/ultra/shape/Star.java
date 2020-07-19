@@ -1,7 +1,8 @@
-package pl.com.sda.rafal.zientara.apps.lesson4.ultra;
+package pl.com.sda.rafal.zientara.apps.lesson4.ultra.shape;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import pl.com.sda.rafal.zientara.apps.lesson4.ultra.Converter;
 
 public class Star extends Shape {
     private final double x;
@@ -61,5 +62,17 @@ public class Star extends Shape {
         context.closePath();
         context.fill();
         context.stroke();
+    }
+
+    @Override
+    public String convertToText() {
+        return new Converter(this)
+                .add(x)
+                .add(y)
+                .add(r)
+                .add(getStrokeColor())
+                .add(getFillColor())
+                .add(getLineThickness())
+                .create();
     }
 }

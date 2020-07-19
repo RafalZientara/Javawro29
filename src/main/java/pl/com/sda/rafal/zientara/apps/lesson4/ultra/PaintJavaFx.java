@@ -7,8 +7,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class PaintJavaFx extends Application {
+
+    public static Stage primaryStage;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
+        PaintJavaFx.primaryStage = primaryStage;
         Parent root = FXMLLoader.load(
 
                 getClass()

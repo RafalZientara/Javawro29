@@ -1,7 +1,8 @@
-package pl.com.sda.rafal.zientara.apps.lesson4.ultra;
+package pl.com.sda.rafal.zientara.apps.lesson4.ultra.shape;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import pl.com.sda.rafal.zientara.apps.lesson4.ultra.Converter;
 
 public class Square extends Shape {
     private final double x;
@@ -40,5 +41,17 @@ public class Square extends Shape {
     public void drawShape(GraphicsContext context) {
         context.fillRect(x, y, side, side);
         context.strokeRect(x, y, side, side);
+    }
+
+    @Override
+    public String convertToText() {
+        return new Converter(this)
+                .add(x)
+                .add(y)
+                .add(side)
+                .add(getStrokeColor())
+                .add(getFillColor())
+                .add(getLineThickness())
+                .create();
     }
 }
