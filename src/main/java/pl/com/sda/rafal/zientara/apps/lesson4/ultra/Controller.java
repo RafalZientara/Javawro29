@@ -48,6 +48,7 @@ public class Controller {
 
                 System.out.printf("Dragged: %.2f x %.2f\n", x, y);
                 currentShape = createShape();
+                shapeList.add(currentShape);
                 refreshCanvas();
             }
         });
@@ -77,6 +78,10 @@ public class Controller {
                 return new Line(Color.DARKSALMON, startX, startY, endX, endY);
             case RECTANGLE:
                 return new Rectangle(Color.GREEN, startX, startY, endX, endY);
+            case TRIANGLE:
+                return new Triangle(Color.MEDIUMAQUAMARINE, startX, startY, endX, endY);
+            case OVAL:
+                return new Oval(Color.BLUE, startX, startY, endX, endY);
         }
     }
 
