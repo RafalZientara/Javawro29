@@ -84,6 +84,8 @@ public class Controller {
                 return new Oval(Color.BLUE, startX, startY, endX, endY);
             case SQUARE:
                 return new Square(Color.INDIANRED, startX, startY, endX, endY);
+            case STAR:
+                return new Star(Color.YELLOW, startX, startY, endX, endY);
 
         }
     }
