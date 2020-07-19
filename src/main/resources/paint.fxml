@@ -16,6 +16,7 @@
             <Button mnemonicParsing="false" text="Rectangle" />
             <Button mnemonicParsing="false" text="Triangle" />
             <Button mnemonicParsing="false" text="Oval" />
+            <Button mnemonicParsing="false" text="Line" />
           </children>
         </VBox>
       </left>

@@ -23,6 +23,9 @@ public class Controller {
             screenInput.clear();
         }
         Object object = actionEvent.getSource();
+
+
+//        if (object.getClass().equals(Button.class)) {
         if (object instanceof Button) {
             Button button = (Button) object;
             String text = button.getText();

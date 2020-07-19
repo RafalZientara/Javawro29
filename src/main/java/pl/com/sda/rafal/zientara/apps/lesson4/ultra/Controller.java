@@ -5,6 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Controller {
 
@@ -15,6 +19,8 @@ public class Controller {
     private double startY;
     private double endX;
     private double endY;
+    private List<Shape> shapeList = new ArrayList<>();
+    private Shape currentShape;
 
     public void initialize() {
         System.out.println("Hello : D");
@@ -40,6 +46,7 @@ public class Controller {
                 endY = y;
 
                 System.out.printf("Dragged: %.2f x %.2f\n", x, y);
+                currentShape = createShape();
                 refreshCanvas();
             }
         });
@@ -53,6 +60,8 @@ public class Controller {
                 endY = y;
 
                 System.out.printf("Released: %.2f x %.2f\n", x, y);
+                currentShape = createShape();
+                shapeList.add(currentShape);
                 refreshCanvas();
             }
         });
@@ -60,13 +69,23 @@ public class Controller {
         refreshCanvas();
     }
 
+    private Shape createShape() {
+        return new Line(Color.DARKSALMON, startX, startY, endX, endY);
+    }
+
     private void refreshCanvas() {
         GraphicsContext context = canvas.getGraphicsContext2D();
 
         //czyszczenie calej planszy
-//        context.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        context.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        context.strokeRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
-        context.strokeLine(0, 0, 100, 100);
-        context.strokeLine(startX, startY, endX, endY);
+        for (Shape shape : shapeList) {
+            shape.draw(context);
+        }
+
+        if (currentShape!=null) {
+            currentShape.draw(context);
+        }
     }
 }
