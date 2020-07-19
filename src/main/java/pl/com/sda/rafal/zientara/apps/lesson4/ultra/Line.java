@@ -21,7 +21,8 @@ public class Line extends Shape {
 
     @Override
     public void draw(GraphicsContext context) {
-
+        context.setStroke(getColor());
+        context.setLineWidth(getLineThickness());
         context.strokeLine(startX, startY, endX, endY);
     }
 }

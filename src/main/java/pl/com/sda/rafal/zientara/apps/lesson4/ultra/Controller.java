@@ -21,6 +21,7 @@ public class Controller {
     private double endY;
     private List<Shape> shapeList = new ArrayList<>();
     private Shape currentShape;
+    private Tool currentTool = Tool.LINE;
 
     public void initialize() {
         System.out.println("Hello : D");
@@ -70,7 +71,13 @@ public class Controller {
     }
 
     private Shape createShape() {
-        return new Line(Color.DARKSALMON, startX, startY, endX, endY);
+        switch (currentTool) {
+            default:
+            case LINE:
+                return new Line(Color.DARKSALMON, startX, startY, endX, endY);
+            case RECTANGLE:
+                return new Rectangle(Color.GREEN, startX, startY, endX, endY);
+        }
     }
 
     private void refreshCanvas() {
@@ -78,14 +85,39 @@ public class Controller {
 
         //czyszczenie calej planszy
         context.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        context.setLineWidth(1);
+        context.setStroke(Color.BLACK);
         context.strokeRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
         for (Shape shape : shapeList) {
             shape.draw(context);
         }
 
-        if (currentShape!=null) {
+        if (currentShape != null) {
             currentShape.draw(context);
         }
+
+
     }
+
+    @FXML
+    public void handleRectangleButton() {
+        currentTool = Tool.RECTANGLE;
+    }
+
+    @FXML
+    public void handleTriangleButton() {
+        currentTool = Tool.TRIANGLE;
+    }
+
+    @FXML
+    public void handleOvalButton() {
+        currentTool = Tool.OVAL;
+    }
+
+    @FXML
+    public void handleLineButton() {
+        currentTool = Tool.LINE;
+    }
+
 }

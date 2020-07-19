@@ -2,30 +2,28 @@
 
 <?import java.lang.*?>
 <?import java.util.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<?import javafx.scene.canvas.Canvas?>
-<AnchorPane fx:controller="pl.com.sda.rafal.zientara.apps.lesson4.ultra.Controller" id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="pl.com.sda.rafal.zientara.apps.lesson4.ultra.Controller">
   <children>
     <BorderPane prefHeight="800.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <center>
+        <Canvas fx:id="canvas" height="400.0" width="700.0" />
+      </center>
       <left>
         <VBox prefHeight="200.0" prefWidth="100.0">
           <children>
-            <Button mnemonicParsing="false" text="Rectangle" />
-            <Button mnemonicParsing="false" text="Triangle" />
-            <Button mnemonicParsing="false" text="Oval" />
-            <Button mnemonicParsing="false" text="Line" />
+            <Button mnemonicParsing="false" onAction="#handleRectangleButton" text="Rectangle" />
+            <Button mnemonicParsing="false" onAction="#handleTriangleButton" text="Triangle" />
+            <Button mnemonicParsing="false" onAction="#handleOvalButton" text="Oval" />
+            <Button mnemonicParsing="false" onAction="#handleLineButton" text="Line" />
           </children>
         </VBox>
       </left>
-
-      <center>
-        <Canvas fx:id="canvas" height="400.0" width="700.0"/>
-      </center>
-
     </BorderPane>
-
   </children>
 </AnchorPane>
