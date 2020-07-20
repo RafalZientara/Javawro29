@@ -6,4 +6,8 @@ public interface Translations {
     String getPlayerWinText(String nick);
 
     String getDrawText();
+
+    String getAskForActionText();
+
+    String getWrongText();
 }

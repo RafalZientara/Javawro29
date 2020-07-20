@@ -31,5 +31,18 @@ public class EnglishTranslations implements Translations {
         return "Draw!";
     }
 
+    @Override
+    public String getAskForActionText() {
+        return String.format("Choose action r(%s)/p(%s)/s(%s)",
+                getActionText(Choice.ROCK),
+                getActionText(Choice.PAPER),
+                getActionText(Choice.SCISSORS)
+        );
+    }
+
+    @Override
+    public String getWrongText() {
+        return "Wrong!";
+    }
 
 }

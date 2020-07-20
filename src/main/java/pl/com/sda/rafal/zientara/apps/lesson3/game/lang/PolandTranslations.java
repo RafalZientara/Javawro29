@@ -31,5 +31,19 @@ public class PolandTranslations implements Translations {
         return "Remis!";
     }
 
+    @Override
+    public String getAskForActionText() {
+        return String.format("Wpisz r(%s)/p(%s)/s(%s)",
+                getActionText(Choice.ROCK),
+                getActionText(Choice.PAPER),
+                getActionText(Choice.SCISSORS)
+        );
+    }
+
+    @Override
+    public String getWrongText() {
+        return "Źle!";
+    }
+
 
 }

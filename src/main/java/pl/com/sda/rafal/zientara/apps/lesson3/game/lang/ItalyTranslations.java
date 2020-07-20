@@ -33,5 +33,19 @@ public class ItalyTranslations implements Translations {
         return "Disegnare!";
     }
 
+    @Override
+    public String getAskForActionText() {
+        return String.format("Inserisci l'azione r(%s)/p(%s)/s(%s)",
+                getActionText(Choice.ROCK),
+                getActionText(Choice.PAPER),
+                getActionText(Choice.SCISSORS)
+        );
+    }
+
+    @Override
+    public String getWrongText() {
+        return "Sbagliato!";
+    }
+
 
 }

@@ -4,16 +4,18 @@ import java.util.Scanner;
 
 public class ScannerPlayer extends Player {
 
-    public ScannerPlayer(String nick) {
+    private final Translations translations;
+
+    public ScannerPlayer(String nick, Translations translations) {
         super(nick);
+        this.translations = translations;
     }
 
     @Override
     public Choice getAction() {
-        //todo
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("Wpisz r/p/s");
+            System.out.println(translations.getAskForActionText());
             String value = scanner.next();
             if (value != null) {
                 switch (value.toLowerCase()) {
@@ -27,7 +29,7 @@ public class ScannerPlayer extends Player {
                     case "paper":
                         return Choice.PAPER;
                     default:
-                        System.out.println("Źle!");
+                        System.out.println(translations.getWrongText());
                 }
             }
         }

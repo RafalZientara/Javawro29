@@ -6,7 +6,7 @@ public class MainGame {
 
     public static void main(String[] args) {
         Translations translations = new FrenchTranslations();
-        Player player1 = new RandomPlayer("Zdzichu");
+        Player player1 = new ScannerPlayer("Zdzichu", translations);
         Player player2 = new RandomPlayer("Zbychu");
 
         Game game = new Game(player1, player2, translations);

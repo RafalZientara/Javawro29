@@ -41,4 +41,18 @@ public class FrenchTranslations implements Translations {
         return "Wut!";
     }
 
+    @Override
+    public String getAskForActionText() {
+        return String.format("Żelti wela r(%s)/p(%s)/s(%s)",
+                getActionText(Choice.ROCK),
+                getActionText(Choice.PAPER),
+                getActionText(Choice.SCISSORS)
+        );
+    }
+
+    @Override
+    public String getWrongText() {
+        return "O no no no!";
+    }
+
 }
