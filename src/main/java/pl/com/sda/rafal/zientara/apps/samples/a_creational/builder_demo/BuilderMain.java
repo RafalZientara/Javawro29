@@ -10,7 +10,7 @@ public class BuilderMain {
                 .setGenius(true)
                 .build(); //shift + F6 = rename
 
-        new Human("male","Zdzichu", "30",true,false);
+        new Human("male", "Zdzichu", "30", true, false);
 
         System.out.println(adas.getSex());
         System.out.println(adas.getName());
@@ -30,5 +30,18 @@ public class BuilderMain {
         System.out.println("is a rich - " + ewcia.isRich());
         System.out.println("is a genius - " + ewcia.isGenius());
         System.out.println();
+
+        Dog doge = new Dog.Builder()
+                .setBarkVolume(120)
+                .setCanDoTricks(true)
+                .setGoodDoge(true)
+                .setSize(40)
+                .setBreed("doge")
+                .setBonesBuried(53)
+                .setSpeed(20)
+                .setHasOwner(false)
+                .build();
+
+        System.out.println(doge);
     }
 }

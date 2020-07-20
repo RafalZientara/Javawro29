@@ -4,10 +4,11 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Janusz implements DownloadThread.Listener {
     private int processCount;
-    private int completedProcesses;//todo AtomicInteger
+    private AtomicInteger completedProcesses = new AtomicInteger();
     private final Map<Long, Integer> threadsProgress = new HashMap<>();
 
     public void startWork(int processCount) {
@@ -27,11 +28,9 @@ public class Janusz implements DownloadThread.Listener {
     public void onProgress(int progress, long threadId) {
         synchronized (threadsProgress) {
             threadsProgress.put(threadId, progress);
-            //todo avg process
             Collection<Integer> values = threadsProgress.values();
-            //todo print
             Optional<Integer> sum = values.stream()
-                    .reduce((acc, v) -> acc + v);
+                    .reduce(Integer::sum);
             if (sum.isPresent()) {
                 double allProgress = sum.get() / (double) threadsProgress.size();
                 System.out.printf("Calkowity progress %.2f\n", allProgress);
@@ -41,25 +40,25 @@ public class Janusz implements DownloadThread.Listener {
             }
 
             //nastepny sposob
-            if (!values.isEmpty()) {
+            /*if (!values.isEmpty()) {
                 int sum2 = 0;
                 for (Integer integer : values) {
                     sum2 += integer;
                 }
                 int output = sum2 / values.size();
-            }
+            }*/
         }
     }
 
     @Override
     public void onSuccess() {
-        completedProcesses++;
+        completedProcesses.addAndGet(1);
         if (isEverythingCompleted()) {
             System.out.println("Skonczylem!");
         }
     }
 
     private boolean isEverythingCompleted() {
-        return completedProcesses == processCount;
+        return completedProcesses.get() == processCount;
     }
 }

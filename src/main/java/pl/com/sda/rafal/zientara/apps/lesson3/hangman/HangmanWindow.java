@@ -75,7 +75,6 @@ public class HangmanWindow {
     }
 
     private void handleOkButton() {
-        //todo akcja reset czy ok?
         if (game.isGameOver()) {
             resetGame();
         } else {
