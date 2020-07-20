@@ -8,11 +8,11 @@ public class LevelUpMain {
         LevelUp levelUp = new LevelUp();
         levelUp.setListener(new LevelUp.LevelListener() {
             @Override
-            public void onLevelUp(int level) {
+            public void onLevelUp(long level) {
                 System.out.printf("LEVEL UP! %d GRATZ!\n", level);
             }
         });
-        int exp;
+        long exp;
         do {
             System.out.println("Podaj liczbę punktów doświadczenia (liczba całkowita).");
             System.out.println("Jeśli chcesz zakończyć wpisz liczbę 0 lub mniejszą");
@@ -25,14 +25,15 @@ public class LevelUpMain {
         System.out.printf("Uzyskano %d poziom\n", levelUp.getLevel());
     }
 
-    private static int getExperience() {
+    private static long getExperience() {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
             try {
                 String s = scanner.nextLine();
-                return Integer.parseInt(s);
+                return Long.parseLong(s);
             } catch (Exception e) {
+                e.printStackTrace();
                 System.out.println("Wpisz poprawnie");
             }
         }

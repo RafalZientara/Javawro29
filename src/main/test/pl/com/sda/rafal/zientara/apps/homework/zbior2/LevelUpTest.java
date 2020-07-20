@@ -4,9 +4,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.*;
 
 class LevelUpTest {
 
@@ -91,6 +92,7 @@ class LevelUpTest {
 
         Mockito.verify(listener, Mockito.times(1)).onLevelUp(1);
     }
+
     @Test
     public void listenerCanHearEveryLevelUp() {
         LevelUp.LevelListener listener = Mockito.mock(LevelUp.LevelListener.class);
@@ -98,8 +100,39 @@ class LevelUpTest {
 
         levelUp.addExp(150);
 
-        Mockito.verify(listener, Mockito.times(4)).onLevelUp(anyInt());
+        Mockito.verify(listener, Mockito.times(4)).onLevelUp(anyLong());
     }
 
+    @Test
+    public void checkMaxLevelWithLong() {
+        long level = 59;
+        long exp = 0;
+        long required = 10;
+        for (long i = 0; i < level; i++) {
+            exp += required;
+            required *= 2;
+            System.out.println("Level:" + (i + 1));
+            System.out.println("exp:" + exp);
+            assertTrue(exp > 0);
+            //na level 60 przekręca się licznik long'a
+        }
+    }
 
+    @Test
+    public void checkMaxLevelWithBigDecimal() {
+        //z big decimal można szaleć do woli
+        BigDecimal TWO = new BigDecimal(2);
+        long level = 10000;
+        BigDecimal exp = new BigDecimal(0);
+        BigDecimal required = new BigDecimal(10);
+        for (long i = 0; i < level; i++) {
+            exp = exp.add(required);
+//            exp += required;
+            required = required.multiply(TWO);
+//            required *= 2;
+            System.out.println("Level:" + (i + 1));
+            System.out.println("exp:" + exp);
+            assertTrue(exp.compareTo(BigDecimal.ZERO) > 0);
+        }
+    }
 }

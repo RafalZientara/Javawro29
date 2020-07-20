@@ -2,29 +2,30 @@ package pl.com.sda.rafal.zientara.apps.homework.zbior2;
 
 public class LevelUp {
 
-    private int level;
-    private int experience;
+    //todo dla chętnych. Przerobić na BigDecimal
+    private long level;
+    private long experience;
     private LevelListener listener;
 
-    public int countExperienceRequired(int level) {
-        int exp = 0;
-        int required = 10;
-        for (int i = 0; i < level; i++) {
+    public long countExperienceRequired(long level) {
+        long exp = 0;
+        long required = 10;
+        for (long i = 0; i < level; i++) {
             exp += required;
             required *= 2;
         }
         return exp;
     }
 
-    public int getLevel() {
+    public long getLevel() {
         return level;
     }
 
-    public int getExperience() {
+    public long getExperience() {
         return experience;
     }
 
-    public void addExp(int newExperience) {
+    public void addExp(long newExperience) {
         experience += newExperience;
         checkLevel();
     }
@@ -43,7 +44,7 @@ public class LevelUp {
     }
 
     public interface LevelListener {
-        void onLevelUp(int level);
+        void onLevelUp(long level);
     }
 }
 
