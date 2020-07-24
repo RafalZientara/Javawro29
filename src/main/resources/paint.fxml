@@ -20,7 +20,7 @@
             <Label text="Stroke color" />
             <ColorPicker fx:id="strokeColorPicker" />
             <Label text="Label" />
-            <ComboBox fx:id="lineThickness"/>
+            <ComboBox fx:id="lineThickness" />
           </children>
         </HBox>
       </bottom>
@@ -36,6 +36,7 @@
             <Button mnemonicParsing="false" onAction="#handleLineButton" text="Line" />
             <Button mnemonicParsing="false" onAction="#handleSquareButton" text="Square" />
             <Button mnemonicParsing="false" onAction="#handleStarButton" text="Star" />
+            <Button mnemonicParsing="false" onAction="#handleBrushButton" text="Brush" />
           </children>
         </VBox>
       </left>

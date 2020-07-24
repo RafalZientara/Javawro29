@@ -6,5 +6,6 @@ public enum Tool {
     OVAL,
     LINE,
     SQUARE,
-    STAR
+    STAR,
+    BRUSH
 }

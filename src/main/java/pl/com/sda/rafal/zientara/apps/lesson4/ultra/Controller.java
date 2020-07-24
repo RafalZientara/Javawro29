@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
@@ -13,6 +14,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Path;
 import javafx.stage.FileChooser;
 import pl.com.sda.rafal.zientara.apps.lesson4.ultra.shape.*;
 
@@ -44,6 +46,7 @@ public class Controller {
     private List<Shape> shapeList = new ArrayList<>();
     private Shape currentShape;
     private Tool currentTool = Tool.LINE;
+    private List<Point2D> path = new ArrayList<>();
 
     public void initialize() {
         System.out.println("Hello : D");
@@ -74,6 +77,10 @@ public class Controller {
                 endX = x;
                 endY = y;
 
+                path = new ArrayList<>();//tworzymy nowy, aby nie czyscic poprzedniej akcji brush
+                //jesli nie uzyjemy new bedziemy korzystac dalej z tego samego adresu w pamieci - czyli wyczyscilibysmy
+                //poprzedni przez path.clear()
+                path.add(new Point2D(x,y));
                 System.out.printf("Pressed: %.2f x %.2f\n", x, y);
                 refreshCanvas();
             }
@@ -86,6 +93,7 @@ public class Controller {
                 endX = x;
                 endY = y;
 
+                path.add(new Point2D(x,y));
                 System.out.printf("Dragged: %.2f x %.2f\n", x, y);
                 currentShape = createShape();
 //                shapeList.add(currentShape);
@@ -101,6 +109,7 @@ public class Controller {
                 endX = x;
                 endY = y;
 
+                path.add(new Point2D(x,y));
                 System.out.printf("Released: %.2f x %.2f\n", x, y);
                 currentShape = createShape();
                 shapeList.add(currentShape);
@@ -135,6 +144,8 @@ public class Controller {
                 return new Square(Color.INDIANRED, startX, startY, endX, endY);
             case STAR:
                 return new Star(Color.YELLOW, startX, startY, endX, endY);
+            case BRUSH:
+                return new Brush(Color.HOTPINK, path);
         }
     }
 
@@ -184,6 +195,11 @@ public class Controller {
     @FXML
     public void handleStarButton() {
         currentTool = Tool.STAR;
+    }
+
+    @FXML
+    public void handleBrushButton() {
+        currentTool = Tool.BRUSH;
     }
 
     @FXML
