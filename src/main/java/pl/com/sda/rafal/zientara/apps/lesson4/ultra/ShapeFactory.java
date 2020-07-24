@@ -1,7 +1,11 @@
 package pl.com.sda.rafal.zientara.apps.lesson4.ultra;
 
+import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import pl.com.sda.rafal.zientara.apps.lesson4.ultra.shape.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ShapeFactory {
 
@@ -22,6 +26,8 @@ public class ShapeFactory {
                 return createStar(data);
             case "triangle":
                 return createTriangle(data);
+            case "brush":
+                return createBrush(data);
             default:
                 System.out.println("Unsupported!");
                 return null;
@@ -118,5 +124,28 @@ public class ShapeFactory {
         shape.setStrokeColor(strokeColor);
         shape.setLineThickness(lineThickness);
         return shape;
+    }
+
+    private static Brush createBrush(String[] data) {
+        List<Point2D> points = getPoints(data[1]);
+        Color strokeColor = Color.valueOf(data[2]);
+        double lineThickness = Double.parseDouble(data[3]);
+
+        Brush shape = new Brush(points);
+        shape.setStrokeColor(strokeColor);
+        shape.setLineThickness(lineThickness);
+        return shape;
+    }
+
+    private static List<Point2D> getPoints(String data) {
+        List<Point2D> points = new ArrayList<>();
+        String[] samples = data.split("#");
+        for (String sample : samples) {
+            String[] coordinates = sample.split(",");
+            double x = Double.parseDouble(coordinates[0]);
+            double y = Double.parseDouble(coordinates[1]);
+            points.add(new Point2D(x,y));
+        }
+        return points;
     }
 }
