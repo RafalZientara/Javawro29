@@ -5,6 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+
 
 public class Controller {
 
@@ -12,14 +15,13 @@ public class Controller {
     private TextField screenInput;
 
     private Operation operation = Operation.PLUS;
-    private double firstNumber;
-    //todo zamien na BigDecimal
+    private BigDecimal firstNumber;
     private boolean shouldClear = false;
 
     @FXML
     public void handlerNumberPressed(ActionEvent actionEvent) {
         if (shouldClear) {
-            shouldClear = !shouldClear;
+            shouldClear = false;
             screenInput.clear();
         }
         Object object = actionEvent.getSource();
@@ -45,15 +47,15 @@ public class Controller {
         shouldClear = true;
     }
 
-    private double getNumberFromScreen() {
+    private BigDecimal getNumberFromScreen() {
         try {
             String text = screenInput.getText();
             String normalized = text.replace(",", ".");
-            return Double.parseDouble(normalized);
+            return new BigDecimal(normalized);
         } catch (Exception e) {
             //todo wyswietl blad!
             e.printStackTrace();
-            return 1;
+            return BigDecimal.ONE;
         }
     }
 
@@ -77,23 +79,23 @@ public class Controller {
 
     @FXML
     public void handlerEqualPressed(ActionEvent actionEvent) {
-        double a = firstNumber;
-        double b = getNumberFromScreen();
-        double output = calcOperation(a, b);
+        BigDecimal a = firstNumber;
+        BigDecimal b = getNumberFromScreen();
+        BigDecimal output = calcOperation(a, b);
         screenInput.setText(String.valueOf(output));
         shouldClear = true;
     }
 
-    private double calcOperation(double a, double b) {
+    private BigDecimal calcOperation(BigDecimal a, BigDecimal b) {
         switch (operation) {
             case PLUS:
-                return a + b;
+                return a.add(b);
             case MINUS:
-                return a - b;
+                return a.subtract(b);
             case MULTIPLY:
-                return a * b;
+                return a.multiply(b);
             case DIVIDE:
-                return a / b;
+                return a.divide(b, MathContext.DECIMAL128);
         }
         throw new IllegalStateException("Unsupported operation " + operation);
     }
