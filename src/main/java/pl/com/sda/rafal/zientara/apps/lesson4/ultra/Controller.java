@@ -1,5 +1,7 @@
 package pl.com.sda.rafal.zientara.apps.lesson4.ultra;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -7,6 +9,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -31,6 +34,8 @@ public class Controller {
     private ColorPicker fillColorPicker;
     @FXML
     private ColorPicker strokeColorPicker;
+    @FXML
+    private ComboBox<Double> lineThickness;
 
     private double startX;
     private double startY;
@@ -44,6 +49,22 @@ public class Controller {
         System.out.println("Hello : D");
         fillColorPicker.setValue(Color.DARKSALMON);
         strokeColorPicker.setValue(Color.BLACK);
+
+        ObservableList<Double> options =
+                FXCollections.observableArrayList(
+                        1.,
+                        2.,
+                        3.,
+                        4.,
+                        5.,
+                        6.,
+                        7.,
+                        8.
+                );
+
+        lineThickness.setItems(options);
+        lineThickness.setValue(1.);
+
         canvas.setOnMousePressed(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 double x = event.getX();
@@ -95,6 +116,7 @@ public class Controller {
         Shape shape = getBaseShape();
         shape.setStrokeColor(strokeColorPicker.getValue());
         shape.setFillColor(fillColorPicker.getValue());
+        shape.setLineThickness(lineThickness.getValue());
         return shape;
     }
 
