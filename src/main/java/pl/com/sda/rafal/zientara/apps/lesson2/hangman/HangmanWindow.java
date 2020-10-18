@@ -20,9 +20,6 @@ public class HangmanWindow {
     private JLabel hpLabel;
     private JTextArea tries;
     private Hangman game = new Hangman();
-    String tried = "";
-
-//    private CheckListener listener;
 
     public HangmanWindow() {
         frame = new JFrame("Hangman");
@@ -90,6 +87,7 @@ public class HangmanWindow {
     }
 
     private void resetGame() {
+        game.setPuzzle(Resources.getRandomPuzzle());
     }
 
     private void refreshUI() {

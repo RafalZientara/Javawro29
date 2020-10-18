@@ -1,14 +1,16 @@
 package pl.com.sda.rafal.zientara.apps.lesson2.hangman;
 
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class Hangman {
     public static final int MAX_HP = 7;
-    private String puzzle = "";
+    private String puzzle = Resources.getRandomPuzzle();
     private Set<String> guessList = new HashSet<>();
     private int hp = MAX_HP;
+    Scanner scan = new Scanner(System.in);
 
     public void setPuzzle(String puzzle) {
         this.puzzle = puzzle;
@@ -74,5 +76,35 @@ public class Hangman {
 
     public boolean isGameOver() {
         return isWin() || isLose();
+    }
+
+    public void play() {
+        setPuzzle(puzzle);
+        while (hp > 0) {
+            System.out.println(getTries());
+            System.out.println(getOutput());
+            System.out.printf("HP: %s/7", getHp());
+            String guess = scan.next();
+            guess(guess);
+            //todo
+//            if (isGameOver()) {
+//                if (isWin()) {
+//                    System.out.println("Wygrałeś!\nGrasz dalej? Y/N");
+//                    hp = 7;
+//                }
+//                if (isLose()) {
+//                    System.out.println("Przegrałęś!\nGrasz dalej? Y/N");
+//                    return;
+//                }
+//                String quit = scan.nextLine();
+//                while (quit != "n" || quit != "y") {
+//                    System.out.println("Podałeś błędny kod.");
+//                    quit = scan.nextLine();
+//                }
+//                if (quit == "n") {
+//                    return;
+//                }
+//            }
+        }
     }
 }
